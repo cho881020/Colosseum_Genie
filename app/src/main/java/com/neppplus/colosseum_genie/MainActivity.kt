@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
 
 
 //            서버에 실제 회원이 맞는지 확인 요청. (Request)
-
+            ServerUtil.postRequestLogin(inputEmail, inputPw)
 
         }
 

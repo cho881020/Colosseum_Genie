@@ -1,8 +1,9 @@
 package com.neppplus.colosseum_genie.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -45,8 +46,30 @@ class ServerUtil {
 
             val client = OkHttpClient()
 
-//            실제로 서버에 요청 날리기.
-            client.newCall(request)
+//            실제로 서버에 요청 날리기. => 갔다 와서는 뭘 한건지?
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버에 연결 자체를 실패한 경우.
+//                    서버 마비, 인터넷 단선.
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+//                    로그인 성공, 로그인 실패 (연결 성공 -> 검사 실패)
+//                    응답이 돌아온 경우.
+
+
+//                    응답 본문을 String 으로 저장.
+                    val bodyString = response.body!!.string()
+
+//                    bodyString 변수에는 한글이 깨져있다. => JSONObject로 변환하면, 한글 정상 처리.
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("응답본문", jsonObj.toString())
+
+                }
+
+            })
 
 
         }
