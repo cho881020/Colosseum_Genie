@@ -2,6 +2,7 @@ package com.neppplus.colosseum_genie
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.neppplus.colosseum_genie.utils.ServerUtil
 
 class MainActivity : BaseActivity() {
 
@@ -13,6 +14,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
 
     }
 
