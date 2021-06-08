@@ -27,7 +27,19 @@ class SignUpActivity : BaseActivity() {
             ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.Companion.JsonReponseHandler {
                 override fun onResponse(jsonObj: JSONObject) {
 
+                    val code = jsonObj.getInt("code")
 
+                    runOnUiThread {
+
+                        if (code == 200) {
+                            Toast.makeText(mContext, "사용해도 좋습니다.", Toast.LENGTH_SHORT).show()
+                        }
+                        else {
+                            val message = jsonObj.getString("message")
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+
+                    }
 
                 }
 
