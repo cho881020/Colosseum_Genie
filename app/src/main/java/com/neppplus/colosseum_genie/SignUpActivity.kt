@@ -18,6 +18,23 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        emailCheckBtn.setOnClickListener {
+
+//            입력한 이메일? => 중복 검사.
+            val inputEmail = emailEdt.text.toString()
+
+//            서버에 중복 여부 확인. API 호출
+            ServerUtil.getRequestDuplCheck("EMAIL", inputEmail, object : ServerUtil.Companion.JsonReponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+
+
+                }
+
+            })
+
+        }
+
         signUpBtn.setOnClickListener {
 
             val inputEmail = emailEdt.text.toString()
