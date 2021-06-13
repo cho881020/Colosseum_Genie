@@ -1,5 +1,6 @@
 package com.neppplus.colosseum_genie.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -171,6 +172,53 @@ class ServerUtil {
                 .url(urlString)
                 .get()
                 .build()
+
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+
+                    val bodyString = response.body!!.string()
+
+                    val jsonObj = JSONObject(bodyString)
+                    Log.d("서버응답본문", jsonObj.toString())
+
+                    handler?.onResponse(jsonObj)
+
+                }
+
+            })
+
+
+
+        }
+
+
+//        진행중인 주제 목록 확인 기능
+
+        fun getRequestMainInfo(context: Context, handler: JsonReponseHandler?) {
+
+//            어디로? + 어떤 데이터? 같이 명시하자.
+//            URL 적으면 + 파라미터 첨부도 같이. => 보조 도구 (Builder)
+
+            val urlBuilder = "${BASE_URL}/v2/main_info".toHttpUrlOrNull()!!.newBuilder()
+//            urlBuilder.addEncodedQueryParameter("type", type)
+//            urlBuilder.addEncodedQueryParameter("value", value)
+
+            val urlString = urlBuilder.build().toString()
+
+            Log.d("완성된URL", urlString)
+
+
+            val request = Request.Builder()
+                    .url(urlString)
+                    .get()
+                    .header("X-Http-Token", ContextUtil.getToken(context))
+                    .build()
 
             val client = OkHttpClient()
 
