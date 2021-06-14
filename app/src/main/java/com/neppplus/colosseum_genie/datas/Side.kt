@@ -1,8 +1,9 @@
 package com.neppplus.colosseum_genie.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 
-class Side {
+class Side : Serializable {
     var id = 0
     var topicId = 0
     var title = ""
