@@ -21,6 +21,20 @@ class ViewTopicDetailActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        voteToFirstSideBtn.setOnClickListener {
+
+//            API 확인 => 토큰(ContextUtil) + 어떤 진영 선택? (해당 진영의 id값)
+
+            ServerUtil.postRequestVote(mContext, mTopic.sides[0].id, object : ServerUtil.Companion.JsonReponseHandler {
+                override fun onResponse(jsonObj: JSONObject) {
+
+//                    서버 응답 대응.
+
+                }
+
+            })
+
+        }
     }
 
     override fun setValues() {
