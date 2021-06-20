@@ -14,7 +14,8 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".EditReplyActivity"></activity>
         <activity android:name=".ViewTopicDetailActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/Theme.Design.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
