@@ -3,7 +3,9 @@ package com.neppplus.colosseum_genie
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import com.google.firebase.iid.FirebaseInstanceId
 import com.neppplus.colosseum_genie.adapters.TopicAdapter
 import com.neppplus.colosseum_genie.datas.Topic
 import com.neppplus.colosseum_genie.utils.ServerUtil
@@ -21,6 +23,9 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         setupEvents()
         setValues()
+
+        // 푸시 발송 연습용 코드 -> 기기 고유번호 확인
+        Log.d("디바이스토큰", FirebaseInstanceId.getInstance().token!!)
     }
 
     override fun setupEvents() {
