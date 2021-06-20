@@ -2,11 +2,14 @@ package com.neppplus.colosseum_genie
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    lateinit var backBtn : ImageView
 
     val mContext = this
 
@@ -28,6 +31,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
         val myToolbar = defaultActionBar.customView.parent as Toolbar
         myToolbar.setContentInsetsAbsolute(0,0)
+
+        backBtn = defaultActionBar.customView.findViewById(R.id.backBtn)
+
+        backBtn.setOnClickListener {
+            finish()
+        }
 
     }
 
