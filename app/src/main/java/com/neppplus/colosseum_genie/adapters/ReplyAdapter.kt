@@ -34,12 +34,19 @@ class ReplyAdapter(
         val userNicknameTxt = row.findViewById<TextView>(R.id.userNicknameTxt)
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
 
+        val likeCountBtn = row.findViewById<TextView>(R.id.likeCountBtn)
+        val dislikeCountBtn = row.findViewById<TextView>(R.id.dislikeCountBtn)
+
 
         contentTxt.text = data.content
 
         selectedSideTxt.text = "(${data.selectedSide.title})"
 
         userNicknameTxt.text = data.writerNickname
+
+
+        likeCountBtn.text = "좋아요 ${data.likeCount}개"
+        dislikeCountBtn.text = "싫어요 ${data.dislikeCount}개"
 
         return row
     }
